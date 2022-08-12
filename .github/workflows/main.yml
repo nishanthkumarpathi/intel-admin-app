@@ -55,6 +55,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: public-folder
+          path: public/
 
       - name: Verify the PUblic folder and its contents
         run: |
