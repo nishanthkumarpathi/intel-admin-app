@@ -71,5 +71,5 @@ jobs:
           user: ${{secrets.USER}}
           password: ${{secrets.PASSWORD}}
           ssh_options: -o StrictHostKeyChecking=no
-          pre_upload: rmdir /s /q public
-          post_upload: echo "post upload"
+          pre_upload: rmdir /s /q public/*
+          post_upload: sudo mv public/* /var/www/html/
