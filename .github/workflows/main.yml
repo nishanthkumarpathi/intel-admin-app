@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Checkout the Code
+        uses: actions/checkout@v3
+
       - name: Install Node.JS
         uses: actions/setup-node@v3.4.1
         with:
@@ -22,9 +25,7 @@ jobs:
       - name: Install Gatsby
         run: npm install --globally gatsby-cli
 
-      - name: Checkout the Code
-        uses: actions/checkout@v3
-      
+     
   
   deploy:
     name: Deployment
