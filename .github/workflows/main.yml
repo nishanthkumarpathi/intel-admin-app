@@ -33,14 +33,18 @@ jobs:
 
       - name: Verify the Build is Successful or not
         run: ls -lrth public/
-     
-  
-  deploy:
-    name: Deployment
-    
-    runs-on: ubuntu-latest
 
-    needs: [build]
-    
-    steps:
-      - run: echo "Deploy is running"
+      # - name: Zip the Public Folder
+      #   run: zip -r public.zip public/
+
+      - name: Copy the Public Folder to Ubuntu
+        uses: marcodallasanta/ssh-scp-deploy@v1.2.0
+        with:
+          local: 'public/*'
+          remote: 'public/'
+          host: ${{secrets.HOST}}
+          user: ${{secrets.USER}}
+          password: ${{secrets.PASSWORD}}
+          ssh_options: -o StrictHostKeyChecking=no
+          pre_upload: rmdir /s /q public
+          post_upload: echo "post upload"
