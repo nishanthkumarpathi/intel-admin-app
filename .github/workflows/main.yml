@@ -56,6 +56,11 @@ jobs:
         with:
           name: public-folder
 
+      - name: Verify the PUblic folder and its contents
+        run: |
+          ls -l
+          ls -l public/
+
       - name: Copy the Public Folder to Ubuntu
         uses: marcodallasanta/ssh-scp-deploy@v1.2.0
         with:
