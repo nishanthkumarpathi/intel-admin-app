@@ -65,11 +65,11 @@ jobs:
       - name: Copy the Public Folder to Ubuntu
         uses: marcodallasanta/ssh-scp-deploy@v1.2.0
         with:
-          local: 'public'
-          remote: 'public'
+          local: 'public/*'
+          remote: '~/public/'
           host: ${{secrets.HOST}}
           user: ${{secrets.USER}}
           password: ${{secrets.PASSWORD}}
           ssh_options: -o StrictHostKeyChecking=no
-          #pre_upload: rmdir /s /q public/*
-          post_upload: sudo mv public/* /var/www/html/
+          pre_upload: sudo rm -rf /var/www/html/*
+          post_upload: sudo mv ~/public/* /var/www/html/
